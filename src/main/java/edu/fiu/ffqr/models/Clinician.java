@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection="clinicians")
-public class Clinician implements Serializable{
+public class Clinician extends User implements Serializable{
 
     @Id
     private ObjectId _id;  
@@ -20,8 +20,6 @@ public class Clinician implements Serializable{
 	private String userId; 
 	@JsonProperty("username")
 	private String username;
-	@JsonProperty("userpassword")
-    private String userpassword;
     @JsonProperty("usertype")
     private String usertype;
     @JsonProperty("abbreviation")
@@ -104,9 +102,6 @@ public class Clinician implements Serializable{
         return this.lastname;
     }
     
-
-
-
     public String getAssignedclinic() {
         return this.assignedclinic;
     }
@@ -118,14 +113,6 @@ public class Clinician implements Serializable{
 		this.username = username;
 	}
 
-	public void setUserpassword(String userpassword){
-		this.userpassword = userpassword;
-    }
-
-    public String getUserpassword() {
-        return this.userpassword;
-    }
-    
     public ArrayList<String> getPreviousclinics() {
         return this.previousclinics;
     }

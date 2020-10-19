@@ -1,7 +1,0 @@
-[
-    {"userId": "1","username": "Johndoe88", "userpassword": "admin123", "usertype": "parent", "firstname": "John", "lastname": "Doe", "assignedclinic": "1", "assignedclinician": "1", "childrennames": ["Sarah", "Tom"], "isactive": true},
-    {"userId": "2","username": "parent2", "userpassword": "admin123", "usertype": "parent", "firstname": "", "lastname": "", "assignedclinic": "", "assignedclinician": "", "childrennames": ["jacob"], "isactive": true},
-    {"userId": "3","username": "parent3", "userpassword": "admin123", "usertype": "parent", "firstname": "", "lastname": "", "assignedclinic": "", "assignedclinician": "", "childrennames": ["Abagail"], "isactive": true},
-    {"userId": "4","username": "millyj", "userpassword": "admin123", "usertype": "parent", "firstname": "Melissa", "lastname": "James", "assignedclinic": "2", "assignedclinician": "2", "childrennames": ["William", "Caroll"], "isactive": true}
-
-]

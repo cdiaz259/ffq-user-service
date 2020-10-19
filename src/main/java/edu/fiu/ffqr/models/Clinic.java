@@ -28,16 +28,18 @@ public class Clinic implements Serializable {
 	private String headclinician;
 	@JsonProperty("isactive")
 	private boolean isactive;
+	@JsonProperty("usersLimit")
+	private int usersLimit;
 
 	public Clinic() {}
-	
-	public Clinic(String clinicId, String address, String datebuilt, String clinicname, String headclinician, boolean isactive){
+	public Clinic(String clinicId, String address, String datebuilt, String clinicname, String headclinician, boolean isactive, int usersLimit){
         this.clinicId = clinicId;
 		this.address = address;
 		this.datebuilt = datebuilt;
 		this.clinicname = clinicname;
 		this.headclinician = headclinician;
 		this.isactive = isactive;
+		this.usersLimit = usersLimit;
     }
 	
 
@@ -90,5 +92,13 @@ public class Clinic implements Serializable {
     public void setIsactive(boolean isactive) {
         this.isactive = isactive;
     }
+
+	public int getUsersLimit() {
+		return usersLimit;
+	}
+
+	public void setUsersLimit(int usersLimit) {
+		this.usersLimit = usersLimit;
+	}
 
 }

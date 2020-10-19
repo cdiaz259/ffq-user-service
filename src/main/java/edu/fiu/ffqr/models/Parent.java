@@ -13,7 +13,7 @@ import edu.fiu.ffqr.models.Clinician;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection="parents")
-public class Parent implements Serializable{
+public class Parent extends User implements Serializable{
 
     @Id
     private ObjectId _id;
@@ -21,8 +21,6 @@ public class Parent implements Serializable{
 	private String userId; 
 	@JsonProperty("username")
 	private String username;
-	@JsonProperty("userpassword")
-    private String userpassword;
     @JsonProperty("usertype")
     private String usertype;
     @JsonProperty("firstname")
@@ -116,14 +114,6 @@ public class Parent implements Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public void setUserpassword(String userpassword){
-		this.userpassword = userpassword;
-    }
-    
-    public String getUserpassword() {
-        return this.userpassword;
-    }
 
     public ArrayList<String> getChildrennames() {
         return this.childrennames;

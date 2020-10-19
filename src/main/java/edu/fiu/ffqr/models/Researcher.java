@@ -10,27 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/*
-public class User implements Serializable {
-	private String status;
 
-	public User(String status) {
-		this.status = status;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-}
-*/
-
-@Document(collection="admins")
-public class Admin extends User implements Serializable {
+@Document(collection="researchers")
+public class Researcher implements Serializable {
 
 	@Id
 	private ObjectId _id;
@@ -38,20 +20,22 @@ public class Admin extends User implements Serializable {
 	private String userId; 
 	@JsonProperty("username")
 	private String username;
+	@JsonProperty("userpassword")
+	private String userpassword;
 	@JsonProperty("usertype")
-    private String usertype;
+        private String usertype;
 	@JsonProperty("firstname")
 	private String firstname;
 	@JsonProperty("lastname")
 	private String lastname;
 	@JsonProperty("isactive")
-    private boolean isactive;
+        private boolean isactive;
 	
 
 
-	public Admin() {}
+	public Researcher() {}
 	
-	public Admin(String userId, String username, String userpassword, String usertype, String firstname, String lastname, boolean isactive){
+	public Researcher(String userId, String username, String userpassword, String usertype, String firstname, String lastname, boolean isactive){
         this.userId = userId;
 		this.username = username;
 		this.userpassword = userpassword;
@@ -84,6 +68,14 @@ public class Admin extends User implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getUserpassword(){
+		return this.userpassword;
+	}
+
+	public void setUserpassword(String userpassword){
+		this.userpassword = userpassword;
 	}
 
 	public String getUsertype(){

@@ -21,7 +21,7 @@ import edu.fiu.ffqr.service.SysUserService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/sysusers")
 public class SysUserController {
 

@@ -29,7 +29,7 @@ import edu.fiu.ffqr.service.ParentService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/parents")
 public class ParentController{
 

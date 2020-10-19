@@ -18,12 +18,15 @@ import edu.fiu.ffqr.repositories.AdminRepository;
 import edu.fiu.ffqr.controller.ClinicController;
 import edu.fiu.ffqr.controller.ClinicianController;
 import edu.fiu.ffqr.controller.ParentController;
+import edu.fiu.ffqr.controller.ResearchController;
 import edu.fiu.ffqr.models.Clinic;
 import edu.fiu.ffqr.models.Clinician;
 import edu.fiu.ffqr.models.Parent;
+import edu.fiu.ffqr.models.Researcher;
 import edu.fiu.ffqr.repositories.ParentRepository;
 import edu.fiu.ffqr.repositories.ClinicRepository;
 import edu.fiu.ffqr.repositories.ClinicianRepository;
+import edu.fiu.ffqr.repositories.ResearchRepository;
 
 @Component
 public class DataLoader {
@@ -38,6 +41,8 @@ public class DataLoader {
 	private ParentRepository parentRepository;
 	private ClinicController clinicController;   //Added to test for User
 	private ClinicRepository clinicRepository;
+    private ResearchController researchController;
+    private ResearchRepository researchRepository;
 
 
 	
@@ -47,7 +52,8 @@ public class DataLoader {
 			AdminController adminController, AdminRepository adminRepository,
 			ClinicianController clinicianController, ClinicianRepository clinicianRepository,
 			ParentController parentController, ParentRepository parentRepository,
-			ClinicController clinicController, ClinicRepository clinicRepository) { //Added extra parameter (SysUsersRepository sysUsersRepository)
+			ClinicController clinicController, ClinicRepository clinicRepository, 
+                        ResearchController researchController, ResearchRepository researchRepository) { //Added extra parameter (SysUsersRepository sysUsersRepository)
 		this.sysUsersRepository = sysUsersRepository;  //Added for users test
 		this.sysUserController = sysUserController;    //Added for users test
 		this.adminController = adminController;      	   //Added for users test
@@ -58,6 +64,9 @@ public class DataLoader {
 		this.parentRepository = parentRepository;
 		this.clinicController = clinicController;
 		this.clinicRepository = clinicRepository;
+        this.researchController = researchController;
+        this.researchRepository = researchRepository;
+                
 	}
 	
 	
@@ -224,6 +233,40 @@ public class DataLoader {
 			for(Clinic item : clinicList) {
 				System.out.println(item.getClinicname() + "---- Loaded!");
 				this.clinicController.create(item);
+			}
+		} catch (Exception e) {
+			System.err.println("An error occurred while loading System Food Items Recommendations: ");
+			e.printStackTrace();
+		}		
+
+	}
+        
+        public void loadResearch() {
+		System.out.println("<------- Loading Research... ------->");
+			
+		this.researchRepository.deleteAll();
+		
+		try {
+		
+			String resourceName = "ResearchPayload.json";		
+		
+			ClassLoader classLoader = getClass().getClassLoader();
+			InputStream inputStream = classLoader.getResourceAsStream(resourceName);
+			JSONParser jsonParser = new JSONParser();		
+			JSONArray jsonArray = (JSONArray) jsonParser
+				.parse(new InputStreamReader(inputStream));
+			ObjectMapper mapper = new ObjectMapper();
+			List<Researcher> userList = new ArrayList<>();
+		
+			for (Object object : jsonArray) {
+				JSONObject jsonObject = (JSONObject) object;
+				Researcher item = mapper.readValue(jsonObject.toString(), Researcher.class);
+				userList.add(item);
+			}
+			
+			for(Researcher item : userList) {
+				System.out.println(item.getUsername() + "---- Loaded!");
+				this.researchController.create(item);
 			}
 		} catch (Exception e) {
 			System.err.println("An error occurred while loading System Food Items Recommendations: ");

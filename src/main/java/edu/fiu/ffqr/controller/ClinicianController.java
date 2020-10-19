@@ -28,7 +28,7 @@ import edu.fiu.ffqr.service.ClinicianService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/clinicians")
 public class ClinicianController{
 
